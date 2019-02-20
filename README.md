@@ -1,5 +1,11 @@
 # fn
+
+[![Build Status](https://travis-ci.org/bcongdon/fn.svg?branch=master)](https://travis-ci.org/bcongdon/fn)
+[![GoDoc](https://godoc.org/github.com/bcongdon/fn?status.svg)](https://godoc.org/github.com/bcongdon/fn)
+[![Go Report Card](https://goreportcard.com/badge/github.com/bcongdon/fn)](https://goreportcard.com/report/github.com/bcongdon/fn)
+
 Golang library for generating (mostly) unique date-sortable filenames
+
 
 ## Installation
 

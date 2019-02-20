@@ -9,6 +9,7 @@ import (
 	"time"
 )
 
+// Fn in a file namer
 type Fn struct {
 	Prefix      string
 	Postfix     string
@@ -17,6 +18,7 @@ type Fn struct {
 	ProcShaSize int
 }
 
+// New creates a new Fn with default settings.
 func New() *Fn {
 	return &Fn{Delimiter: "-", GitShaSize: 7, ProcShaSize: 8}
 }
@@ -53,6 +55,7 @@ func (fn *Fn) getGitHash() string {
 	return getGitHash()[:fn.GitShaSize]
 }
 
+// Name generates a file name (without file extension) based on the current settings
 func (fn *Fn) Name() string {
 	components := []string{
 		fn.getFormattedTime(),
@@ -68,6 +71,7 @@ func (fn *Fn) Name() string {
 	return strings.Join(components, fn.Delimiter)
 }
 
+// NameWithFileType is identical to `Name()`, except that it appends a file extension
 func (fn *Fn) NameWithFileType(fType string) string {
 	return fmt.Sprintf("%s.%s", fn.Name(), fType)
 }

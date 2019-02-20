@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 	"time"
 )
@@ -35,9 +36,27 @@ func (fn *Fn) getProcTimeHash() string {
 	return digest[:fn.ProcShaSize]
 }
 
+func getGitHash() string {
+	var (
+		cmdOut []byte
+		err    error
+	)
+	cmdName := "git"
+	cmdArgs := []string{"rev-parse", "--verify", "HEAD"}
+	if cmdOut, err = exec.Command(cmdName, cmdArgs...).Output(); err != nil {
+		return ""
+	}
+	return string(cmdOut)
+}
+
+func (fn *Fn) getGitHash() string {
+	return getGitHash()[:fn.GitShaSize]
+}
+
 func (fn *Fn) Name() string {
 	components := []string{
 		fn.getFormattedTime(),
+		fn.getGitHash(),
 		fn.getProcTimeHash(),
 	}
 	if fn.Prefix != "" {

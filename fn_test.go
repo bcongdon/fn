@@ -13,13 +13,14 @@ func setupTest() {
 	testTime := time.Date(1974, time.May, 19, 1, 2, 3, 4, time.UTC)
 	monkey.Patch(time.Now, func() time.Time { return testTime })
 	monkey.Patch(os.Getppid, func() int { return 12345 })
+	monkey.Patch(getGitHash, func() string { return "711de72aacdd0fda1c95486f9e67e477df2cee9a" })
 }
 
 func TestName(t *testing.T) {
 	setupTest()
 
 	fn := New()
-	assert.Equal(t, "190560519-010203-1309178b", fn.Name())
+	assert.Equal(t, "190560519-010203-711de72-1309178b", fn.Name())
 }
 
 func TestPrefix(t *testing.T) {
@@ -27,7 +28,7 @@ func TestPrefix(t *testing.T) {
 
 	fn := New()
 	fn.Prefix = "foo"
-	assert.Equal(t, "foo-190560519-010203-1309178b", fn.Name())
+	assert.Equal(t, "foo-190560519-010203-711de72-1309178b", fn.Name())
 }
 
 func TestPostfix(t *testing.T) {
@@ -35,12 +36,12 @@ func TestPostfix(t *testing.T) {
 
 	fn := New()
 	fn.Postfix = "bar"
-	assert.Equal(t, "190560519-010203-1309178b-bar", fn.Name())
+	assert.Equal(t, "190560519-010203-711de72-1309178b-bar", fn.Name())
 }
 
 func TestNameWithFileType(t *testing.T) {
 	setupTest()
 
 	fn := New()
-	assert.Equal(t, "190560519-010203-1309178b.png", fn.NameWithFileType("png"))
+	assert.Equal(t, "190560519-010203-711de72-1309178b.png", fn.NameWithFileType("png"))
 }

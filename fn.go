@@ -25,8 +25,16 @@ func New() *Fn {
 
 func (fn *Fn) getFormattedTime() string {
 	now := time.Now()
-	fmtStr := fmt.Sprintf("20160102%s150405", fn.Delimiter)
-	return now.Format(fmtStr)
+	return fmt.Sprintf(
+		"%04d%02d%02d%s%02d%02d%02d",
+		now.Year(),
+		now.Month(),
+		now.Day(),
+		fn.Delimiter,
+		now.Hour(),
+		now.Minute(),
+		now.Second(),
+	)
 }
 
 func (fn *Fn) getProcTimeHash() string {

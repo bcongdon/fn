@@ -20,7 +20,7 @@ func TestName(t *testing.T) {
 	setupTest()
 
 	fn := New()
-	assert.Equal(t, "190560519-010203-711de72-1309178b", fn.Name())
+	assert.Equal(t, "19740519-010203-711de72-1309178b", fn.Name())
 }
 
 func TestPrefix(t *testing.T) {
@@ -28,7 +28,7 @@ func TestPrefix(t *testing.T) {
 
 	fn := New()
 	fn.Prefix = "foo"
-	assert.Equal(t, "foo-190560519-010203-711de72-1309178b", fn.Name())
+	assert.Equal(t, "foo-19740519-010203-711de72-1309178b", fn.Name())
 }
 
 func TestPostfix(t *testing.T) {
@@ -36,12 +36,12 @@ func TestPostfix(t *testing.T) {
 
 	fn := New()
 	fn.Postfix = "bar"
-	assert.Equal(t, "190560519-010203-711de72-1309178b-bar", fn.Name())
+	assert.Equal(t, "19740519-010203-711de72-1309178b-bar", fn.Name())
 }
 
 func TestNameWithFileType(t *testing.T) {
 	setupTest()
 
 	fn := New()
-	assert.Equal(t, "190560519-010203-711de72-1309178b.png", fn.NameWithFileType("png"))
+	assert.Equal(t, "19740519-010203-711de72-1309178b.png", fn.NameWithFileType("png"))
 }
